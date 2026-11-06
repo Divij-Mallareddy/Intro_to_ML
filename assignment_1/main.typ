@@ -133,14 +133,51 @@ The machine learning model predicting quality	(y(x))
 
 = Exercise 5 — Rule-Based Learning (Practice)
 
-== (a) Find-S algorithm
-[Show the hypothesis after each example.]
-
-== (b) Candidate-Elimination algorithm
-[Show the specific and general boundary sets after each example.]
-
-== (c) Version space
-[Give the version space and explain how it was obtained.]
+Attribute order: (Weekday, Mother-in-the-car, Mood, Time of day).
+x1 = (Monday, no, easygoing, evening) c = 1
+x2 = (Monday, no, annoyed, evening) c = 0
+x3 = (Saturday, yes, easygoing, lunchtime) c = 0
+x4 = (Monday, no, easygoing, morning) c = 1
+(a)
+Step Example θ
+0 — (⊥, ⊥, ⊥, ⊥)
+1 x1 (+) (Monday, no, easygoing, evening)
+2 x2 (−) (Monday, no, easygoing, evening)
+3 x3 (−) (Monday, no, easygoing, evening)
+4 x4 (+) (Monday, no, easygoing, ?)
+x2 and x3 are negative, so Find-S ignores them. In step 4 only the time of day differs from θ, so
+it becomes “?”.
+Result: θ = (Monday, no, easygoing, ?)
+(b)
+k Example HSk HGk
+0 — {(⊥, ⊥, ⊥, ⊥)} {(?, ?, ?, ?)}
+1 x1 (+) {(Monday, no, easygoing, evening)} {(?, ?, ?, ?)}
+2 x2 (−) {(Monday, no, easygoing, evening)} {(?, ?, easygoing, ?)}
+3 x3 (−) {(Monday, no, easygoing, evening)} {(Monday, ?, easygoing, ?),
+(?, no, easygoing, ?),
+(?, ?, easygoing, evening)}
+4 x4 (+) {(Monday, no, easygoing, ?)} {(Monday, ?, easygoing, ?),
+(?, no, easygoing, ?)}
+Notes:
+• k = 2: (?, ?, ?, ?) accepts x2 and has to be specialised. Only Mood = easygoing still covers
+HS1; the other specialisations (Weekday ̸= Monday, Mother = yes, Time ̸= evening) would
+reject x1.
+• k = 3: (?, ?, easygoing, ?) accepts x3. Specialising Weekday, Mother or Time to the values of
+x1 gives the three new hypotheses. Time = morning is not possible because it rejects x1.
+• k = 4: (?, ?, easygoing, evening) rejects x4 and is removed. HS is generalised to cover x4 (time
+of day → ?).
+HS = {(Monday, no, easygoing, ?)}
+HG = {(Monday, ?, easygoing, ?), (?, no, easygoing, ?)}
+(c)
+The version space contains all hypotheses between HS and HG. Both hypotheses in HG differ
+from HS in only one attribute, so there is nothing else in between:
+(Monday, no, easygoing, ?)
+(Monday, ?, easygoing, ?) (?, no, easygoing, ?)
+HS
+HG
+HD = { (Monday, no, easygoing, ?),
+(Monday, ?, easygoing, ?),
+(?, no, easygoing, ?) }
 
 = Exercise 6 — Rule-Based Learning in 2D
 
