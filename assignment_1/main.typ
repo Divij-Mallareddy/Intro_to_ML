@@ -145,14 +145,53 @@ The machine learning model predicting quality	(y(x))
 = Exercise 6 — Rule-Based Learning in 2D
 
 == (a) Most general hypothesis
-[Answer and reasoning.]
+Most general hypothesis
+
+The coordinate range is from 1 to 10.
+
+Therefore, the most general rectangle covers the entire coordinate space:
+\[
+\boxed{h_{g0}=(1,1,10,10)}
+\]
 
 == (b) More-general relation
-[Evaluate each of the four statements and justify the result.]
+Given relationship	Answer	Explanation
+(1,2,3,4) ≥g (1,1,4,4)	False	The second rectangle extends outside the first.
+(2,3,6,7) ≥g (3,4,5,7)	True	The second rectangle is completely inside the first.
+(1,1,2,8) ≥g (1,1,3,3)	False	The second rectangle extends to x = 3.
+(3,3,9,9) ≥g (1,1,1,1)	False	The rectangles do not overlap.
 
 == (c) Minimal specialisations
-[Give both hypotheses and justify minimality and consistency.]
+Given:
+\[
+h=(2,3,5,7)
+\]
 
-= Group contribution and final checks
+Negative example:
+\[
+x=(2,7),\quad c=0
+\]
 
-[Briefly record who reviewed which sections and confirm that all six members' required annotation files are included in the Moodle ZIP.]
+First, check whether the point is inside the rectangle:
+\[
+2\leq2\leq5
+\]
+
+\[
+3\leq7\leq7
+\]
+
+Yes! The point is inside, but it belongs to class 0. We must shrink the rectangle so that it no longer contains this point.
+
+There are two minimal ways:
+
+Option 1: Increase the lower x-coordinate from 2 to 3.
+\[
+\boxed{h_1=(3,3,5,7)}
+\]
+
+Option 2: Decrease the upper y-coordinate from 7 to 6.
+\[
+\boxed{h_2=(2,3,5,6)}
+\]
+
