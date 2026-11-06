@@ -16,9 +16,9 @@
 == Assignment 1
 
 *Course:* Machine Learning (ML:I, ML:II)  
-*Group:* [Group number]  
+*Group:* [40]  
 *Members:* [Add all six names and student IDs]  
-*Date:* [Submission date]
+*Date:* [12 November]
 
 #v(1em)
 #text(size: 9pt, fill: gray)[
