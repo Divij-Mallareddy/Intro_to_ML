@@ -43,26 +43,6 @@ The groups are discovered from the behaviour data rather than supplied as labels
 3. Reinforcement learning
 Reinforcement learning is a machine learning paradigm in which an agent learns how to act by interacting with an environment. The agent chooses actions, observes the results, and receives feedback in the form of rewards or penalties. By trying different actions and learning from this feedback, it gradually develops a strategy that aims to maximise the total reward over time. Unlike supervised learning, it is not necessarily given the correct action for every situation.
 Example: A computer program learns to play chess by playing games. It can receive a positive reward for winning and a negative reward for losing, and use the outcomes to improve its future moves.
-Exercise 1(b) – Identify the learning paradigm
-For each task, select one learning paradigm. Where another approach could also be possible, the answer below chooses one reasonable paradigm and explains the assumption behind that choice.
-b1. Grouping YouTube accounts by watch behaviour
-Learning paradigm: Unsupervised learning
-Explanation: The system analyses users' viewing histories and groups accounts according to similarities in their watch behaviour. Because the groups are discovered from the data and are not provided as predefined labels, this is an unsupervised-learning task.
-b2. Identifying plants based on pictures
-Learning paradigm: Supervised learning
-Explanation: A model can be trained using plant pictures that have already been labelled with their correct species.
-It learns the visual characteristics associated with each label and uses them to classify new pictures.
-b3. A program learning to win at chess
-Learning paradigm: Reinforcement learning
-Explanation: The program can learn by playing chess and evaluating the outcomes of its actions. Winning can provide a positive reward and losing a negative reward, allowing the program to improve its strategy through experience. b4. A robot learning to walk by feedback
-Learning paradigm: Reinforcement learning
-Explanation: The robot tries movements, observes their effects, and receives feedback about its performance, such as whether it stays balanced or falls. It can use rewards or penalties to improve its movements over repeated attempts. b5. Facial recognition
-Learning paradigm: Supervised learning
-Explanation: A typical facial-recognition system is trained on face images associated with known identity labels.
-The model learns patterns that distinguish the identities and uses them to recognise or classify faces in new images.
-b6. Discovering topics in a large corpus of research papers
-Learning paradigm: Unsupervised learning
-Explanation: A system can analyse the words and content of many research papers to discover groups of documents that discuss similar subjects. Since the topics are found from the corpus rather than supplied as labels in advance, this is unsupervised learning.
 
 Quick revision: how to distinguish the three paradigms
 Paradigm	Key idea	Typical clue
@@ -76,12 +56,13 @@ Reinforcement	Learns actions from interaction and reward/penalty feedback.	Trial
   columns: (auto, 1fr, 2fr),
   inset: 6pt,
   [*Task*], [*Paradigm*], [*Brief explanation*],
-  [b1 — Grouping YouTube accounts by watch behaviour], [], [],
-  [b2 — Identifying plants based on pictures], [], [],
-  [b3 — A program learning to win at chess], [], [],
-  [b4 — A robot learning to walk by feedback], [], [],
-  [b5 — Facial recognition], [], [],
-  [b6 — Discovering topics in research papers], [], [],
+  [b1 — Grouping YouTube accounts by watch behaviour], [Unsupervised learning], [ The system analyses users' viewing histories and groups accounts according to similarities in their watch behaviour. Because the groups are discovered from the data and are not provided as predefined labels, this is an unsupervised-learning task.],
+  [b2 — Identifying plants based on pictures], [Supervised learning], [ A model can be trained using plant pictures that have already been labelled with their correct species.],
+  [b3 — A program learning to win at chess], [Reinforcement learning], [The program can learn by playing chess and evaluating the outcomes of its actions. Winning can provide a positive reward and losing a negative reward, allowing the program to improve its strategy through experience.],
+  [b4 — A robot learning to walk by feedback], [Reinforcement learning], [ The robot tries movements, observes their effects, and receives feedback about its performance, such as whether it stays balanced or falls. It can use rewards or penalties to improve its movements over repeated attempts.],
+  [b5 — Facial recognition], [Supervised learning], [ A typical facial-recognition system is trained on face images associated with known identity labels.
+The model learns patterns that distinguish the identities and uses them to recognise or classify faces in new images.],
+  [b6 — Discovering topics in research papers], [Unsupervised learning], A system can analyse the words and content of many research papers to discover groups of documents that discuss similar subjects. Since the topics are found from the corpus rather than supplied as labels in advance, this is unsupervised learning.[],
 )
 
 = Exercise 2 — Specification of Learning Tasks
