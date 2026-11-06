@@ -113,46 +113,89 @@ The machine learning model predicting quality	(y(x))
 [Recursion formula and explanation.]
 
 = Exercise 5 — Rule-Based Learning (Practice)
-(a)
-Step Example θ
-0 — (⊥, ⊥, ⊥, ⊥)
-1 x1 (+) (Monday, no, easygoing, evening)
-2 x2 (−) (Monday, no, easygoing, evening)
-3 x3 (−) (Monday, no, easygoing, evening)
-4 x4 (+) (Monday, no, easygoing, ?)
-x2 and x3 are negative, so Find-S ignores them. In step 4 only the time of day differs from θ, so
-it becomes “?”.
-Result: θ = (Monday, no, easygoing, ?)
-(b)
-k Example HSk HGk
-0 — {(⊥, ⊥, ⊥, ⊥)} {(?, ?, ?, ?)}
-1 x1 (+) {(Monday, no, easygoing, evening)} {(?, ?, ?, ?)}
-2 x2 (−) {(Monday, no, easygoing, evening)} {(?, ?, easygoing, ?)}
-3 x3 (−) {(Monday, no, easygoing, evening)} {(Monday, ?, easygoing, ?),
-(?, no, easygoing, ?),
-(?, ?, easygoing, evening)}
-4 x4 (+) {(Monday, no, easygoing, ?)} {(Monday, ?, easygoing, ?),
-(?, no, easygoing, ?)}
-Notes:
-• k = 2: (?, ?, ?, ?) accepts x2 and has to be specialised. Only Mood = easygoing still covers
-HS1; the other specialisations (Weekday ̸= Monday, Mother = yes, Time ̸= evening) would
-reject x1.
-• k = 3: (?, ?, easygoing, ?) accepts x3. Specialising Weekday, Mother or Time to the values of
-x1 gives the three new hypotheses. Time = morning is not possible because it rejects x1.
-• k = 4: (?, ?, easygoing, evening) rejects x4 and is removed. HS is generalised to cover x4 (time
-of day → ?).
-HS = {(Monday, no, easygoing, ?)}
-HG = {(Monday, ?, easygoing, ?), (?, no, easygoing, ?)}
-(c)
-The version space contains all hypotheses between HS and HG. Both hypotheses in HG differ
-from HS in only one attribute, so there is nothing else in between:
-(Monday, no, easygoing, ?)
-(Monday, ?, easygoing, ?) (?, no, easygoing, ?)
-HS
-HG
-HD = { (Monday, no, easygoing, ?),
-(Monday, ?, easygoing, ?),
-(?, no, easygoing, ?) }
+== (a) Find-S algorithm
+
+The Find-S algorithm starts with the most specific hypothesis. It updates the
+hypothesis using positive examples and ignores negative examples.
+
+#table(
+  columns: (auto, auto, 1fr),
+  inset: 6pt,
+  align: (center, center, left),
+  [*Step*], [*Example*], [*Hypothesis $θ$*],
+  [0], [—], [`(⊥, ⊥, ⊥, ⊥)`],
+  [1], [`x₁ (+)`], [`(Monday, no, easygoing, evening)`],
+  [2], [`x₂ (−)`], [`(Monday, no, easygoing, evening)`],
+  [3], [`x₃ (−)`], [`(Monday, no, easygoing, evening)`],
+  [4], [`x₄ (+)`], [`(Monday, no, easygoing, ?)`],
+)
+
+Examples $x_2$ and $x_3$ are negative, so Find-S ignores them. At step 4,
+only the time of day differs from the current hypothesis, so that attribute
+is generalised to `?`.
+
+*Result:* `θ = (Monday, no, easygoing, ?)`.
+
+== (b) Candidate-Elimination algorithm
+
+Candidate Elimination maintains two boundaries: the most specific hypotheses
+($S$) and the most general hypotheses ($G$) that are consistent with the
+examples seen so far.
+
+#table(
+  columns: (auto, auto, 1fr, 1fr),
+  inset: 5pt,
+  align: (center, center, left, left),
+  [*Step*], [*Example*], [*$S_k$*], [*$G_k$*],
+  [0], [—], [`{(⊥, ⊥, ⊥, ⊥)}`], [`{(?, ?, ?, ?)}`],
+  [1], [`x₁ (+)`], [`{(Monday, no, easygoing, evening)}`], [`{(?, ?, ?, ?)}`],
+  [2], [`x₂ (−)`], [`{(Monday, no, easygoing, evening)}`], [`{(?, ?, easygoing, ?)}`],
+  [3], [`x₃ (−)`], [`{(Monday, no, easygoing, evening)}`], [
+    `{(Monday, ?, easygoing, ?), (?, no, easygoing, ?), (?, ?, easygoing, evening)}`
+  ],
+  [4], [`x₄ (+)`], [`{(Monday, no, easygoing, ?)}`], [
+    `{(Monday, ?, easygoing, ?), (?, no, easygoing, ?)}`
+  ],
+)
+
+*Explanation of the updates:*
+
+- *Step 2:* The general hypothesis `(?, ?, ?, ?)` accepts the negative example
+  $x_2$, so it must be specialised. Only `Mood = easygoing` still covers the
+  first positive example. The other possible specialisations would reject
+  that positive example.
+- *Step 3:* The hypothesis `(?, ?, easygoing, ?)` accepts the negative example
+  $x_3$. It is specialised in three ways while still covering the first
+  positive example: `Weekday = Monday`, `Mother = no`, or `Time = evening`.
+- *Step 4:* The hypothesis `(?, ?, easygoing, evening)` does not cover the new
+  positive example $x_4$, so it is removed. The specific boundary is
+  generalised by changing the time attribute to `?`.
+
+The final boundaries are:
+
+- $S = \{(Monday, no, easygoing, ?)\}$
+- $G = \{(Monday, ?, easygoing, ?), (?, no, easygoing, ?)\}$
+
+== (c) Version space
+
+The version space contains every hypothesis that is at least as general as
+an element of the specific boundary and at least as specific as an element
+of the general boundary. Here, each hypothesis in $G$ differs from the
+hypothesis in $S$ in only one attribute. Therefore, there are no additional
+intermediate hypotheses.
+
+#table(
+  columns: (1fr),
+  inset: 7pt,
+  align: center,
+  [`(Monday, no, easygoing, ?)` — specific boundary hypothesis],
+  [`(Monday, ?, easygoing, ?)` — general boundary hypothesis],
+  [`(?, no, easygoing, ?)` — general boundary hypothesis],
+)
+
+Thus, the version space is:
+
+`H_D = {(Monday, no, easygoing, ?), (Monday, ?, easygoing, ?), (?, no, easygoing, ?)}`
 
 = Exercise 6 — Rule-Based Learning in 2D
 
