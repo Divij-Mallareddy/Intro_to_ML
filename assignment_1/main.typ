@@ -4,7 +4,7 @@
 
 #set document(
   title: "Introduction to Machine Learning — Assignment 1",
-  author: "Group [number] — [six group members]",
+  author: "Group [40] — [Mallareddy Divij Reddy, Nousheen Shaik, Sai Purnesh K, Koushik Jampula, Varsha]",
 )
 
 #set page(paper: "a4", margin: (x: 2.5cm, y: 2.3cm))
@@ -17,7 +17,7 @@
 
 *Course:* Machine Learning (ML:I, ML:II)  
 *Group:* [40]  
-*Members:* [Add all six names and student IDs]  
+*Members:* [Mallareddy Divij Reddy, Nousheen Shaik, Sai Purnesh K, Koushik Jampula, Varsha]  
 *Date:* [12 November]
 
 #v(1em)
