@@ -132,12 +132,6 @@ The machine learning model predicting quality	(y(x))
 [Recursion formula and explanation.]
 
 = Exercise 5 — Rule-Based Learning (Practice)
-
-Attribute order: (Weekday, Mother-in-the-car, Mood, Time of day).
-x1 = (Monday, no, easygoing, evening) c = 1
-x2 = (Monday, no, annoyed, evening) c = 0
-x3 = (Saturday, yes, easygoing, lunchtime) c = 0
-x4 = (Monday, no, easygoing, morning) c = 1
 (a)
 Step Example θ
 0 — (⊥, ⊥, ⊥, ⊥)
