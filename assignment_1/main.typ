@@ -89,22 +89,22 @@ Reinforcement	Learns actions from interaction and reward/penalty feedback.	Trial
 [Explain the mapping for each item (a)–(f), using the symbols from the exercise sheet.]
 
 == (a)
-[Answer and reasoning.]
+A cellar containing hundreds of wine bottles (O)
 
 == (b)
-[Answer and reasoning.]
+A table containing measured wine features	(X)
 
 == (c)
-[Answer and reasoning.]
+A professional sommelier who rates wines	(gamma(o))
 
 == (d)
-[Answer and reasoning.]
+A laboratory instrument measuring chemical features	(alpha(o))
 
 == (e)
-[Answer and reasoning.]
+The set	(C)
 
 == (f)
-[Answer and reasoning.]
+The machine learning model predicting quality	(y(x))
 
 = Exercise 3 — Data Annotation and Feature Engineering
 
